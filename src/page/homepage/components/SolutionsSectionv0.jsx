@@ -48,7 +48,7 @@ const PHRASES = [
 const TOTAL_FRAMES = 450
 const FRAME_PATHS = Array.from({ length: TOTAL_FRAMES }, (_, i) => {
   const num = String(i + 1).padStart(3, '0')
-  return `./src/assets/images/frames/ezgif-frame-${num}.jpg`
+  return `/frames/ezgif-frame-${num}.jpg`
 })
 
 
