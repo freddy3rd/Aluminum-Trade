@@ -237,7 +237,7 @@ export default function HowItWorks() {
 
           <button
             className="group relative px-10 py-4 border border-white/20 text-[11px] tracking-widest uppercase overflow-hidden hover:text-black transition-colors duration-500 flex-shrink-0"
-            style={{ fontFamily: "'DM Sans', sans-serif", color: "#fafafa" }}
+            style={{ fontFamily: "'DM Sans', sans-serif"}}
           >
             <span className="relative z-10 flex items-center gap-4">
               Book Free Consultation

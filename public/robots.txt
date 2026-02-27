@@ -1,0 +1,22 @@
+# Robots.txt for Aluminum Trade
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+Disallow: /sample/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Specific rules for Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Specific rules for Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://aluminumtrade.com/sitemap.xml

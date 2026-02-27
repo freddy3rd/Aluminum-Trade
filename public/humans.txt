@@ -1,0 +1,15 @@
+/* humanstxt.org */
+
+/* TEAM */
+  Developer: Clifford Arnejo
+  Contact: info@aluminumtrade.com
+  Twitter: @aluminumtrade
+
+/* THANKS */
+  Thanks to React, Vite, TailwindCSS, GSAP, and Framer Motion teams
+
+/* SITE */
+  Last update: 2026/02/27
+  Doctype: HTML5
+  IDE: VS Code
+  Language: JavaScript, JSX

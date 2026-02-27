@@ -1,23 +1,24 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import aluminum from './assets/video/animated_aluminum.mp4'
-import Hero from './page/homepage'
-import Header from './components/layout/Header'
-import AluminumScrollAnimation from './components/AluminumScrollAnimation'
 import Homepage from './page/homepage'
-// import MaterialsSection from './page/materialSection'
+import { updateMetaTags } from './utils/seoMetaTags'
 
 function App() {
   const [count, setCount] = useState(0)
 
+  // Initialize default meta tags on app load
+  const handleAppLoad = () => {
+    updateMetaTags({
+      title: 'Aluminum Trade | Premium Architectural Aluminum Systems',
+      description: 'Discover innovative aluminum architectural systems that bridge design and functionality. Premium solutions for modern construction and design projects.',
+      image: 'https://aluminumtrade.com/og-image.jpg',
+      url: 'https://aluminumtrade.com/',
+    })
+  }
+
   return (
     <>
-      <Homepage/>
-
+      <Homepage onLoad={handleAppLoad} />
     </>
   )
 }
