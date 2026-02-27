@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Architecture | Premium Door Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #fafafa;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background-color: white;
+        }
+
+        .cursor-outline {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Parallax container */
+        .parallax-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background layer with image */
+        .parallax-bg {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background-image: url('/mnt/kimi/upload/ezgif-frame-160.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4) contrast(1.1);
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        /* Gradient overlay */
+        .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.8) 0%,
+                    rgba(0, 0, 0, 0.4) 50%,
+                    rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+
+        /* Noise texture */
+        .noise {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            z-index: 2;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Content layer */
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1400px;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Typography animations */
+        .reveal-text {
+            overflow: hidden;
+        }
+
+        .reveal-text span {
+            display: block;
+            transform: translateY(100%);
+            opacity: 0;
+            animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes revealUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        /* Line animation */
+        .animated-line {
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: expandLine 1.5s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes expandLine {
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Floating elements */
+        .floating-badge {
+            position: absolute;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .badge-1 {
+            top: 20%;
+            right: 10%;
+            animation-delay: 1.2s;
+        }
+
+        .badge-2 {
+            bottom: 25%;
+            left: 5%;
+            animation-delay: 1.4s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Button styles */
+        .btn-primary {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            color: #0a0a0a;
+            border-color: white;
+        }
+
+        .btn-primary:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-primary .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1.6s;
+            z-index: 20;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, white, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scaleY(0.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Specs grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        .spec-item {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            padding-left: 1rem;
+        }
+
+        .spec-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .content-layer {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .specs-grid {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+        }
+
+        /* Magnetic button effect */
+        .magnetic-wrap {
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="logo">Aperture</div>
+        <ul class="nav-links">
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#craft">Craft</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="parallax-container" id="hero">
+        <!-- Background with parallax -->
+        <div class="parallax-bg" id="parallaxBg"></div>
+
+        <!-- Overlays -->
+        <div class="gradient-overlay"></div>
+        <div class="noise"></div>
+
+        <!-- Floating badges -->
+        <div class="floating-badge badge-1">
+            Precision Engineering
+        </div>
+        <div class="floating-badge badge-2">
+            Est. 2024
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-layer">
+            <div class="left-content">
+                <div class="reveal-text mb-6">
+                    <span class="delay-1 text-sm tracking-[0.3em] uppercase text-gray-400 font-light">Architectural
+                        Systems</span>
+                </div>
+
+                <div class="reveal-text mb-8">
+                    <h1 class="serif text-6xl md:text-7xl lg:text-8xl font-normal leading-[0.9] tracking-tight">
+                        <span class="delay-2 block">Threshold</span>
+                        <span class="delay-3 block italic text-gray-400">Between</span>
+                        <span class="delay-4 block">Worlds</span>
+                    </h1>
+                </div>
+
+                <div class="animated-line mb-8 max-w-md"></div>
+
+                <div class="reveal-text">
+                    <p class="delay-4 text-gray-300 text-lg font-light leading-relaxed max-w-md mb-10">
+                        Where minimalist design meets structural integrity. Our door systems redefine the boundary
+                        between interior and exterior space.
+                    </p>
+                </div>
+
+                <div class="magnetic-wrap">
+                    <button class="btn-primary magnetic-btn">
+                        <span>Explore Collection</span>
+                        <svg class="arrow w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="right-content hidden md:block">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Material</div>
+                        <div class="spec-value">Aerospace Aluminum</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Finish</div>
+                        <div class="spec-value">Matte Black Anodized</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Glazing</div>
+                        <div class="spec-value">Triple Pane Low-E</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Hardware</div>
+                        <div class="spec-value">Concealed Hinges</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span class="text-xs tracking-[0.3em] uppercase text-gray-400">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <script>
+        // Custom cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Magnetic button effect
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                cursorOutline.classList.add('hover');
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+                cursorOutline.classList.remove('hover');
+            });
+        });
+
+        // Parallax effect on mouse move
+        const parallaxBg = document.getElementById('parallaxBg');
+        const hero = document.getElementById('hero');
+
+        hero.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            parallaxBg.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
+        });
+
+        // Smooth parallax on scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * 0.5;
+                    parallaxBg.style.transform = `translateY(${rate}px) scale(1.1)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.spec-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Hide cursor on mobile
+        if ('ontouchstart' in window) {
+            cursorDot.style.display = 'none';
+            cursorOutline.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

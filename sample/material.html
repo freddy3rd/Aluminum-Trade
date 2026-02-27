@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Awareness | Premium Materials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #fafafa;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Problem Awareness Section */
+        .problem-section {
+            min-height: 100vh;
+            position: relative;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+
+        /* Split Screen Container */
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Left Side - Traditional Materials (The Problem) */
+        .problem-side {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            position: relative;
+            padding: 6rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .problem-side.dimmed {
+            opacity: 0.3;
+            filter: grayscale(100%);
+        }
+
+        /* Right Side - Aluminum Solution */
+        .solution-side {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            position: relative;
+            padding: 6rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .solution-side.active {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1c1c1c 100%);
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .highlight-text {
+            color: #ef4444;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ef4444;
+            transform: scaleX(0);
+            transform-origin: right;
+            animation: lineGrow 1s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes lineGrow {
+            to {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        }
+
+        /* Pain Points Cards */
+        .pain-points-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pain-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pain-card.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .pain-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #ef4444;
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .pain-card.visible::before {
+            transform: scaleY(1);
+        }
+
+        .pain-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: #ef4444;
+        }
+
+        .pain-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fca5a5;
+        }
+
+        .pain-desc {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Solution Cards */
+        .solution-content {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .solution-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .solution-header {
+            margin-bottom: 3rem;
+        }
+
+        .solution-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 20px;
+            color: #22c55e;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .solution-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .solution-title span {
+            color: #22c55e;
+            font-weight: 500;
+        }
+
+        /* Comparison Visual */
+        .comparison-visual {
+            position: relative;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .material-showcase {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .aluminum-structure {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate3d 20s linear infinite;
+        }
+
+        @keyframes rotate3d {
+            0% {
+                transform: rotateY(0deg) rotateX(10deg);
+            }
+
+            100% {
+                transform: rotateY(360deg) rotateX(10deg);
+            }
+        }
+
+        .aluminum-frame {
+            position: absolute;
+            inset: 0;
+            border: 4px solid #444;
+            background: linear-gradient(135deg, rgba(68, 68, 68, 0.3), rgba(34, 34, 34, 0.3));
+            box-shadow:
+                0 0 30px rgba(34, 197, 94, 0.1),
+                inset 0 0 30px rgba(255, 255, 255, 0.05);
+        }
+
+        .aluminum-frame::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.05);
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border-left: 2px solid #22c55e;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .feature-item.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .feature-icon {
+            color: #22c55e;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text p {
+            font-size: 0.875rem;
+            color: #888;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .cta-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 2.5rem;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            border-radius: 8px;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 60px rgba(34, 197, 94, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* VS Badge */
+        .vs-badge {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: #0a0a0a;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: #666;
+            z-index: 20;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ef4444, #22c55e);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .split-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .problem-side {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                padding: 4rem 2rem;
+            }
+
+            .solution-side {
+                padding: 4rem 2rem;
+            }
+
+            .vs-badge {
+                top: auto;
+                bottom: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Glitch effect for problem side */
+        .glitch-text {
+            position: relative;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-text::before {
+            animation: glitch-1 2s infinite;
+            color: #ef4444;
+            z-index: -1;
+        }
+
+        .glitch-text::after {
+            animation: glitch-2 2s infinite;
+            color: #22c55e;
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+
+            0%,
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0);
+            }
+
+            20% {
+                clip-path: inset(20% 0 30% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                clip-path: inset(50% 0 20% 0);
+                transform: translate(2px, -2px);
+            }
+
+            60% {
+                clip-path: inset(10% 0 60% 0);
+                transform: translate(-2px, 0);
+            }
+
+            80% {
+                clip-path: inset(80% 0 5% 0);
+                transform: translate(2px, 2px);
+            }
+        }
+
+        @keyframes glitch-2 {
+
+            0%,
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0);
+            }
+
+            20% {
+                clip-path: inset(60% 0 10% 0);
+                transform: translate(2px, -2px);
+            }
+
+            40% {
+                clip-path: inset(30% 0 40% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            60% {
+                clip-path: inset(10% 0 80% 0);
+                transform: translate(2px, 0);
+            }
+
+            80% {
+                clip-path: inset(40% 0 30% 0);
+                transform: translate(-2px, -2px);
+            }
+        }
+
+        /* Counter animation */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ef4444;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .problem-stat {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(239, 68, 68, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(239, 68, 68, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Problem Awareness Section -->
+    <section class="problem-section" id="problem">
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <span class="section-label">The Reality Check</span>
+            <h2 class="section-title serif">
+                Most Materials <span class="highlight-text " >Compromise</span>
+                Something
+            </h2>
+        </div>
+
+        <!-- Split Screen Comparison -->
+        <div class="split-container">
+
+            <!-- LEFT: The Problem (Traditional Materials) -->
+            <div class="problem-side" id="problemSide">
+                <div class="problem-content">
+                    <div class="flex items-center gap-3 mb-8">
+                        <div class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
+                        <span class="text-red-400 text-sm tracking-widest uppercase font-medium">Traditional
+                            Materials</span>
+                    </div>
+
+                    <h3 class="text-3xl font-light mb-2 text-gray-300">The Hidden Costs of</h3>
+                    <h3 class="text-3xl font-semibold mb-8 text-white">Conventional Choices</h3>
+
+                    <!-- Pain Points -->
+                    <div class="pain-points-grid">
+
+                        <!-- Pain Point 1: Weight -->
+                        <div class="pain-card" data-delay="0">
+                            <div class="pain-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </div>
+                            <h4 class="pain-title">Excessive Weight</h4>
+                            <p class="pain-desc">Steel and wood systems add unnecessary load, increasing structural
+                                costs and limiting design possibilities.</p>
+                            <div class="mt-3 flex items-center gap-2 text-red-400 text-sm">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 5v14M5 12h14" />
+                                </svg>
+                                <span>40% higher installation costs</span>
+                            </div>
+                        </div>
+
+                        <!-- Pain Point 2: Weakness -->
+                        <div class="pain-card" data-delay="100">
+                            <div class="pain-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                    <path d="M12 2v20" />
+                                </svg>
+                            </div>
+                            <h4 class="pain-title">Structural Weakness</h4>
+                            <p class="pain-desc">PVC and wood warp under thermal stress, creating gaps that compromise
+                                insulation and security.</p>
+                            <div class="mt-3 flex items-center gap-2 text-red-400 text-sm">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 5v14M5 12h14" />
+                                </svg>
+                                <span>3x more maintenance required</span>
+                            </div>
+                        </div>
+
+                        <!-- Pain Point 3: Corrosion -->
+                        <div class="pain-card" data-delay="200">
+                            <div class="pain-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                                    <path d="M12 18a6 6 0 0 0 6-6c0-3.31-6-10-6-10S6 8.69 6 12a6 6 0 0 0 6 6z" />
+                                </svg>
+                            </div>
+                            <h4 class="pain-title">Corrosion & Decay</h4>
+                            <p class="pain-desc">Coastal environments destroy standard metals in months. Rust spreads
+                                silently until failure.</p>
+                            <div class="mt-3 flex items-center gap-2 text-red-400 text-sm">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 5v14M5 12h14" />
+                                </svg>
+                                <span>Replace every 5-7 years</span>
+                            </div>
+                        </div>
+
+                        <!-- Pain Point 4: Environmental -->
+                        <div class="pain-card" data-delay="300">
+                            <div class="pain-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                </svg>
+                            </div>
+                            <h4 class="pain-title">Environmental Impact</h4>
+                            <p class="pain-desc">Non-recyclable composites and chemically-treated woods contribute to
+                                landfill waste.</p>
+                            <div class="mt-3 flex items-center gap-2 text-red-400 text-sm">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 5v14M5 12h14" />
+                                </svg>
+                                <span>85% ends up in landfills</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Problem Stat -->
+                    <div class="problem-stat mt-8">
+                        <div class="stat-number" data-target="68">0</div>
+                        <div class="stat-label">% of traditional materials fail within 10 years</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VS Badge -->
+            <div class="vs-badge">VS</div>
+
+            <!-- RIGHT: The Solution (Aluminum) -->
+            <div class="solution-side" id="solutionSide">
+                <div class="solution-content" id="solutionContent">
+
+                    <div class="solution-label">
+                        <span class="pulse-dot"></span>
+                        The Alternative
+                    </div>
+
+                    <h3 class="solution-title">
+                        Aerospace-Grade <span>Aluminum</span><br>
+                        Stays Intact
+                    </h3>
+
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Engineered for extremes. Our aluminum systems defy the trade-offs that plague conventional
+                        materials.
+                    </p>
+
+                    <!-- Visual Comparison -->
+                    <div class="comparison-visual">
+                        <div class="material-showcase">
+                            <div class="aluminum-structure">
+                                <div class="aluminum-frame"></div>
+                            </div>
+                        </div>
+                        <!-- Glow effect -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-green-500/10 to-transparent"></div>
+                    </div>
+
+                    <!-- Solution Features -->
+                    <ul class="feature-list">
+                        <li class="feature-item" data-delay="0">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Ultra-Lightweight</h4>
+                                <p>1/3 the weight of steel, reducing structural load and installation complexity</p>
+                            </div>
+                        </li>
+
+                        <li class="feature-item" data-delay="100">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Superior Strength</h4>
+                                <p>6061-T6 alloy withstands 40,000 PSI without deformation</p>
+                            </div>
+                        </li>
+
+                        <li class="feature-item" data-delay="200">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Self-Healing Oxide</h4>
+                                <p>Natural aluminum oxide layer prevents corrosion indefinitely</p>
+                            </div>
+                        </li>
+
+                        <li class="feature-item" data-delay="300">
+                            <div class="feature-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Infinitely Recyclable</h4>
+                                <p>75% of all aluminum ever produced is still in use today</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- CTA -->
+                    <div class="cta-container" id="ctaContainer">
+                        <a href="#aluminum" class="cta-button">
+                            <span>See Why Aluminum Wins</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                        <p class="text-xs text-gray-500 mt-4 ml-1">Compare full technical specifications →</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + "%";
+        });
+
+        // Intersection Observer for scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+
+                    // Animate pain cards with stagger
+                    if (target.classList.contains('pain-card')) {
+                        const delay = target.dataset.delay || 0;
+                        setTimeout(() => {
+                            target.classList.add('visible');
+                        }, delay);
+                    }
+
+                    // Animate solution content
+                    if (target.id === 'solutionContent') {
+                        target.classList.add('visible');
+
+                        // Animate feature items with stagger
+                        const features = target.querySelectorAll('.feature-item');
+                        features.forEach((feature, index) => {
+                            setTimeout(() => {
+                                feature.classList.add('visible');
+                            }, index * 100 + 300);
+                        });
+
+                        // Show CTA
+                        setTimeout(() => {
+                            document.getElementById('ctaContainer').classList.add('visible');
+                        }, 800);
+                    }
+
+                    // Counter animation
+                    if (target.classList.contains('problem-stat')) {
+                        animateCounter(target.querySelector('.stat-number'));
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.pain-card').forEach(card => observer.observe(card));
+        observer.observe(document.getElementById('solutionContent'));
+        observer.observe(document.querySelector('.problem-stat'));
+
+        // Counter animation function
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.target);
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Parallax effect for split screen on scroll
+        let lastScrollY = window.scrollY;
+        const problemSide = document.getElementById('problemSide');
+        const solutionSide = document.getElementById('solutionSide');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const section = document.getElementById('problem');
+            const rect = section.getBoundingClientRect();
+
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
+
+                // Dim problem side as user scrolls
+                if (progress > 0.3) {
+                    problemSide.classList.add('dimmed');
+                    solutionSide.classList.add('active');
+                } else {
+                    problemSide.classList.remove('dimmed');
+                    solutionSide.classList.remove('active');
+                }
+            }
+
+            lastScrollY = currentScrollY;
+        });
+
+        // Smooth scroll for CTA
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Smooth scroll to next section
+            window.scrollBy({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        // Glitch effect randomization
+        setInterval(() => {
+            const glitchText = document.querySelector('.glitch-text');
+            if (Math.random() > 0.95) {
+                glitchText.style.animation = 'none';
+                setTimeout(() => {
+                    glitchText.style.animation = '';
+                }, 100);
+            }
+        }, 3000);
+    </script>
+
+</body>
+
+</html>

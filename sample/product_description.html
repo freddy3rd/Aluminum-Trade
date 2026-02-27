@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Technical Specifications – Aluminum Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        .spec-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #18181b;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.25);
+        }
+
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #34d399;
+            width: 0%;
+            transition: width 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-950 text-white">
+
+    <section id="tech-specs" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Headline – matches previous sections -->
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold tracking-tight">"Technical Specifications & Performance Data"
+                </h2>
+                <p class="mt-4 text-xl text-zinc-400 max-w-3xl mx-auto">
+                    Engineered for architects, builders, and designers who demand precision and longevity.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- SLIDING DOORS -->
+                <div class="spec-card rounded-3xl overflow-hidden fade-in">
+                    <div class="p-8">
+                        <div class="uppercase text-emerald-400 text-xs tracking-widest mb-2">Series • SD-1800</div>
+                        <h3 class="text-3xl font-semibold mb-8 text-emerald-400">Aluminum Sliding Doors</h3>
+
+                        <!-- Technical Diagram -->
+                        <div class="mb-10 bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
+                            display render_searched_image with image_id is l3Wmo size is "LARGE"
+                        </div>
+
+                        <div class="space-y-8">
+                            <!-- Material -->
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-4">
+                                    <i class="fa-solid fa-cube text-2xl text-emerald-400"></i>
+                                    <div>
+                                        <div class="font-medium">Material Composition</div>
+                                        <div class="text-sm text-zinc-400">6063-T5 Aluminum • 2.0–2.5 mm wall thickness
+                                            • Polyamide thermal break</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Durability -->
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Durability / Weather Resistance</span>
+                                    <span class="text-emerald-400 font-semibold"><span class="counter"
+                                            data-target="2000">0</span> Pa</span>
+                                </div>
+                                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="progress-bar w-0" data-width="95"></div>
+                                </div>
+                                <div class="text-xs text-zinc-500 mt-1">Tested to 2000 Pa (Category A, EN 12210)</div>
+                            </div>
+
+                            <!-- Noise -->
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Noise Reduction / Smoothness</span>
+                                    <span class="text-emerald-400 font-semibold"><span class="counter"
+                                            data-target="38">0</span> dB</span>
+                                </div>
+                                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="progress-bar w-0" data-width="88"></div>
+                                </div>
+                                <div class="text-xs text-zinc-500 mt-1">Roller system with 8 precision bearings • Silent
+                                    glide</div>
+                            </div>
+
+                            <!-- Custom -->
+                            <div class="flex justify-between items-center border-t border-zinc-800 pt-6">
+                                <div>
+                                    <div class="font-medium">Custom Sizes & Finishes</div>
+                                    <div class="text-sm text-zinc-400">Max width 6 000 mm • Max height 3 200
+                                        mm<br>Powder coat, anodized, wood-grain, matte</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDING WINDOWS -->
+                <div class="spec-card rounded-3xl overflow-hidden fade-in" style="animation-delay: 150ms">
+                    <div class="p-8">
+                        <div class="uppercase text-emerald-400 text-xs tracking-widest mb-2">Series • SW-1200</div>
+                        <h3 class="text-3xl font-semibold mb-8 text-emerald-400">Aluminum Sliding Windows</h3>
+
+                        <!-- Technical Diagram -->
+                        <div class="mb-10 bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
+                            display render_searched_image with image_id is ZRAX8 size is "LARGE"
+                        </div>
+
+                        <div class="space-y-8">
+                            <!-- Material -->
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-4">
+                                    <i class="fa-solid fa-cube text-2xl text-emerald-400"></i>
+                                    <div>
+                                        <div class="font-medium">Material Composition</div>
+                                        <div class="text-sm text-zinc-400">6063-T5 Aluminum • 1.8 mm wall • Double EPDM
+                                            seals</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Durability -->
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Durability / Weather Resistance</span>
+                                    <span class="text-emerald-400 font-semibold"><span class="counter"
+                                            data-target="1600">0</span> Pa</span>
+                                </div>
+                                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="progress-bar w-0" data-width="80"></div>
+                                </div>
+                                <div class="text-xs text-zinc-500 mt-1">Water tightness Class 7A • Air permeability
+                                    Class 4</div>
+                            </div>
+
+                            <!-- Noise -->
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Noise Reduction / Smoothness</span>
+                                    <span class="text-emerald-400 font-semibold"><span class="counter"
+                                            data-target="32">0</span> dB</span>
+                                </div>
+                                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="progress-bar w-0" data-width="75"></div>
+                                </div>
+                                <div class="text-xs text-zinc-500 mt-1">Multi-point locking • Ultra-smooth nylon rollers
+                                </div>
+                            </div>
+
+                            <!-- Custom -->
+                            <div class="flex justify-between items-center border-t border-zinc-800 pt-6">
+                                <div>
+                                    <div class="font-medium">Custom Sizes & Finishes</div>
+                                    <div class="text-sm text-zinc-400">Max width 4 000 mm • Any RAL color • 10-year
+                                        finish warranty</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALUMINUM CABINETS -->
+                <div class="spec-card rounded-3xl overflow-hidden fade-in" style="animation-delay: 300ms">
+                    <div class="p-8">
+                        <div class="uppercase text-emerald-400 text-xs tracking-widest mb-2">Series • AC-800</div>
+                        <h3 class="text-3xl font-semibold mb-8 text-emerald-400">Aluminum Cabinets</h3>
+
+                        <!-- Technical Diagram -->
+                        <div class="mb-10 bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
+                            display render_searched_image with image_id is dLH9w size is "LARGE"
+                        </div>
+
+                        <div class="space-y-8">
+                            <!-- Material -->
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-4">
+                                    <i class="fa-solid fa-cube text-2xl text-emerald-400"></i>
+                                    <div>
+                                        <div class="font-medium">Material Composition</div>
+                                        <div class="text-sm text-zinc-400">6063-T5 Aluminum extrusion • 1.2–1.5 mm
+                                            panels • Marine-grade hardware</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Durability -->
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Durability / Weather Resistance</span>
+                                    <span class="text-emerald-400 font-semibold">100 %</span>
+                                </div>
+                                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="progress-bar w-0" data-width="100"></div>
+                                </div>
+                                <div class="text-xs text-zinc-500 mt-1">Zero corrosion even in 95 % humidity •
+                                    Salt-spray tested 1 000 hrs</div>
+                            </div>
+
+                            <!-- Noise -->
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span>Noise Reduction / Smoothness</span>
+                                    <span class="text-emerald-400 font-semibold">Soft-close</span>
+                                </div>
+                                <div class="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                                    <div class="progress-bar w-0" data-width="92"></div>
+                                </div>
+                                <div class="text-xs text-zinc-500 mt-1">Blumotion dampers • Silent close under 1 second
+                                </div>
+                            </div>
+
+                            <!-- Custom -->
+                            <div class="flex justify-between items-center border-t border-zinc-800 pt-6">
+                                <div>
+                                    <div class="font-medium">Custom Sizes & Finishes</div>
+                                    <div class="text-sm text-zinc-400">Modular – any width/depth • 200+ colors &
+                                        textures</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Performance Summary Chart (Sound Insulation) -->
+            <div class="mt-20 bg-zinc-900 rounded-3xl p-10 border border-zinc-800">
+                <div class="text-center mb-8">
+                    <h4 class="text-2xl font-semibold">Comparative Sound Insulation Performance</h4>
+                    <p class="text-zinc-400">STC Rating – Aluminum vs Traditional Materials</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    display render_searched_image with image_id is AtTOc size is "LARGE"
+                </div>
+                <div class="text-center text-xs text-zinc-500 mt-4">Our aluminum systems consistently outperform wood
+                    and uPVC in real-world acoustic testing.</div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-20">
+                <a href="#download"
+                    class="inline-flex items-center justify-center bg-emerald-500 hover:bg-emerald-600 transition-colors text-black font-semibold px-14 py-6 rounded-2xl text-lg shadow-xl hover:shadow-2xl">
+                    <i class="fa-solid fa-download mr-3"></i>
+                    Download Full Product Datasheet
+                </a>
+                <p class="mt-6 text-zinc-400 text-sm">PDF • 28 pages • Includes load tables, CAD details & warranty</p>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // Tailwind already loaded
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.fade-in').forEach((el, i) => {
+                        setTimeout(() => el.classList.add('visible'), i * 120);
+                    });
+
+                    // Animate counters
+                    entry.target.querySelectorAll('.counter').forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        let count = 0;
+                        const increment = Math.ceil(target / 60);
+                        const timer = setInterval(() => {
+                            count += increment;
+                            if (count >= target) {
+                                count = target;
+                                clearInterval(timer);
+                            }
+                            counter.textContent = count;
+                        }, 25);
+                    });
+
+                    // Animate progress bars
+                    entry.target.querySelectorAll('.progress-bar').forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width + '%';
+                        }, 400);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+
+        observer.observe(document.getElementById('tech-specs'));
+    </script>
+
+</body>
+
+</html>
