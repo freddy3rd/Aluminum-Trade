@@ -335,7 +335,7 @@ export default function SolutionSection() {
                         exit={{ opacity: 0, y: -12 }}
                         transition={{ duration: 0.4, ease: "easeOut" }}
                         whileHover={{ x: 6 }}
-                        className="group flex items-start gap-4 py-5 cursor-default flex-shrink-0"
+                        className="group flex items-start gap-4 py-5 cursor-default flex-shrink-0 bg-white/5 backdrop-blur-sm px-3"
                       >
                       {/* Check */}
                       <div className="mt-[3px] opacity-60 group-hover:opacity-100 transition-opacity duration-300">

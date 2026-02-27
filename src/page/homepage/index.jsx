@@ -3,11 +3,13 @@ import Hero from './components/HeroSection'
 
 import Header from '../../components/layout/Header'
 import ProblemsSection from './components/CommonPromblem'
-import WhyAluminum from './components/SolutionSection'
+
 
 import SlidingDoorShowcase from './components/SlidingShowCase'
 import HowItWorks from './components/HowItWorkSection'
-import SolutionSection from './components/SolutionsSectionv0'
+import SolutionSection from './components/SolutionsSection'
+import ClosingCTA from './components/ContactSection'
+import Testimonials from './components/Testimonials'
 
 const Homepage = () => {
   return (
@@ -15,10 +17,11 @@ const Homepage = () => {
         <Header/>
         <Hero />
         <ProblemsSection/>  
-        {/* <WhyAluminum/> */}
         <SolutionSection/>
         <SlidingDoorShowcase/>
+        <Testimonials/>
         <HowItWorks/>
+        <ClosingCTA/>
       </div>
 
   )
