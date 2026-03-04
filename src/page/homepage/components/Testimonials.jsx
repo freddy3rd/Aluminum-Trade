@@ -118,15 +118,15 @@ export default function Testimonials() {
     goTo(n, -1);
   };
 
-  // Auto-slide
-  useEffect(() => {
-    timerRef.current = setInterval(next, AUTOSLIDE_INTERVAL);
-    return () => clearInterval(timerRef.current);
-  }, [active]);
+  // // Auto-slide
+  // useEffect(() => {
+  //   timerRef.current = setInterval(next, AUTOSLIDE_INTERVAL);
+  //   return () => clearInterval(timerRef.current);
+  // }, [active]);
 
-  // Pause on hover
-  const pause  = () => clearInterval(timerRef.current);
-  const resume = () => { timerRef.current = setInterval(next, AUTOSLIDE_INTERVAL); };
+  // // Pause on hover
+  // const pause  = () => clearInterval(timerRef.current);
+  // const resume = () => { timerRef.current = setInterval(next, AUTOSLIDE_INTERVAL); };
 
   // Visible cards: prev, active, next
   const getCard = (offset) =>
@@ -225,8 +225,8 @@ export default function Testimonials() {
           custom={3}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          onMouseEnter={pause}
-          onMouseLeave={resume}
+          // onMouseEnter={pause}
+          // onMouseLeave={resume}
         >
           {/* Three-card view — desktop */}
           <div className="hidden md:grid grid-cols-3 gap-5 items-stretch">

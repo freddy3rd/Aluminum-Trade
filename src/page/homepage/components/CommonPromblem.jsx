@@ -109,7 +109,9 @@ const ProblemsSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#F5EFE6] overflow-hidden py-28 px-6 md:px-16"
+        className="panel ccommon-problem relative bg-[#F5EFE6] overflow-hidden py-28 px-6 md:px-16"
+        data-bg="rgba(208, 184, 168, 0.6)"
+        data-text="#1A1A1A"
     >
 
 

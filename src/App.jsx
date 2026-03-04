@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Homepage from './page/homepage'
 import { updateMetaTags } from './utils/seoMetaTags'
+import Route from './Route'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <>
-      <Homepage onLoad={handleAppLoad} />
+      <Route onLoad={handleAppLoad} />
     </>
   )
 }

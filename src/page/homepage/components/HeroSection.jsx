@@ -30,7 +30,7 @@ const Hero = () => {
 
 
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-[#fafafa] font-sans overflow-hidden selection:bg-white selection:text-black">
+    <div className="hero-section relative min-h-screen bg-[#0a0a0a] text-[#fafafa] font-sans overflow-hidden selection:bg-white selection:text-black">
         <div className='absolute inset-0 h-screen overflow-hidden'>
             {/* <PingPongVideo src={slinding_panel} /> */}
             <SmoothForwardBackwardVideo forwardSrc={slinding_panel} backwardSrc={slinding_panel_reverse} />
