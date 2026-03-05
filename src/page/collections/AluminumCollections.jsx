@@ -6,28 +6,27 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 // import img1 from "/collection/collection_1.jpg";
 const allItems = [
   // Cabinets
-  { id: "C01", category: "Cabinet", label: "Sink Base Cabinet",     sub: "Stainless + Aluminum",  src: "/collection/collection_1.jpg" },
-  { id: "C02", category: "Cabinet", label: "Hanging Cabinet",       sub: "Powder-coat Finish",    src: "/collection/collection_2.jpg" },
-  { id: "C03", category: "Cabinet", label: "Kitchen Upper Cabinet", sub: "Anodised Champagne",    src: "/collection/collection_3.jpg" },
-  { id: "C04", category: "Cabinet", label: "Base Cabinet",          sub: "Matt Black Profile",    src: "/collection/collection_4.jpg" },
-  { id: "C05", category: "Cabinet",  label: "Hanging Cabinet",      sub: "Powder-coat Finish",    src: "/collection/collection_9.jpg" },
+  { id: "C01", category: "Cabinet", label: "Kitchen Upper Cabinet" ,sub: "Stainless + Aluminum",  src: "/collection/collection_1.jpg" },
+  { id: "C02", category: "Cabinet", label: "Room Cabinet",          sub: "Anodised Champagne",    src: "/collection/collection_3.jpg" },
+  { id: "C03", category: "Cabinet", label: "Sliding Door Wardrobe",          sub: "Sliding cabinet with a full-length mirror & frosted panel",    src: "/collection/collection_4.jpg" },
+  { id: "C04", category: "Cabinet",  label: "Hanging Cabinet",      sub: "Powder-coat Finish",    src: "/collection/collection_9.jpg" },
+  { id: "C05", category: "Cabinet", label: "Base Cabinet", sub: "Modular Kitchen Cabinet", src: "/collection/collection_7.jpg" },
+  { id: "C06", category: "Cabinet",  label: "Under-stairs Custom Storage Cabinet",       sub: "cabinet with glass doors and integrated shelving unit",    src: "/collection/collection_8.jpg" },
+  { id: "C07", category: "Cabinet",  label: "Sliding Mirror Wardrobe",          sub: "Custom-fit aluminum frame cabinet.",    src: "/collection/collection_12.jpg" },
+  { id: "C08", category: "Cabinet",  label: "Triple-Door Glass Display Cabinet",       sub: "White cabinet with glass doors and metal handles",          src: "/collection/collection_13.jpg" },
+  { id: "C09", category: "Cabinet",  label: "Mirrored Multi-Compartment Storage Unit",          sub: "Tall aluminum cabinet with top storage",    src: "/collection/collection_17.jpg" },
+  { id: "C10", category: "Cabinet",  label: "Wall-Mounted Kitchen Cabinet",         sub: "White aluminum cabinet with glass and solid panels",   src: "/collection/collection_10.jpg" },
+
   // Doors
-  { id: "D01", category: "Door",    label: "Sliding Door",          sub: "2-Panel System",        src: "/collection/collection_5.jpg" },
-  { id: "D02", category: "Door",    label: "Swing Door",            sub: "Heavy-duty Hinge",      src: "/collection/collection_6.jpg" },
-  { id: "D03", category: "Door",    label: "Bi-fold Door",          sub: "Custom Width",          src: "/collection/collection_7.jpg" },
+  { id: "D01", "category": "Door",  label: "Aluminum Door",               sub: "Aluminum Frame PVC Board Panel", src: "/collection/collection_6.jpg" },
+  { id: "D02", category: "Door",  label: "Aluminum Wood-Grain Door",          sub: "Aluminum door with floral glass panel",    src: "/collection/collection_14.jpg" },
+  { id: "D03", category: "Door",  label: "Aluminum Cabinet Doors",          sub: "Textured dark brown aluminum doors",    src: "/collection/collection_19.jpg" },
+
   // Windows
-  { id: "W01", category: "Window",  label: "Casement Window",       sub: "Double-glaze Ready",    src: "/collection/collection_8.jpg" },
-  { id: "W03", category: "Window",  label: "Awning Window",         sub: "Weather-seal System",   src: "/collection/collection_10.jpg" },
   // Others
-  { id: "O01", category: "Others",  label: "Glass Partition",       sub: "Office Grade",          src: "/collection/collection_11.jpg" },
-  { id: "O02", category: "Others",  label: "Louver Panel",          sub: "Ventilation Series",    src: "/collection/collection_12.jpg" },
-  { id: "O01", category: "Others",  label: "Glass Partition",       sub: "Office Grade",          src: "/collection/collection_13.jpg" },
-  { id: "O02", category: "Others",  label: "Louver Panel",          sub: "Ventilation Series",    src: "/collection/collection_14.jpg" },
-  { id: "O01", category: "Others",  label: "Glass Partition",       sub: "Office Grade",          src: "/collection/collection_15.jpg" },
-  { id: "O02", category: "Others",  label: "Louver Panel",          sub: "Ventilation Series",    src: "/collection/collection_16.jpg" },
-  { id: "O02", category: "Others",  label: "Louver Panel",          sub: "Ventilation Series",    src: "/collection/collection_17.jpg" },
-  { id: "O02", category: "Others",  label: "Louver Panel",          sub: "Ventilation Series",    src: "/collection/collection_18.jpg" },
-  { id: "O02", category: "Others",  label: "Louver Panel",          sub: "Ventilation Series",    src: "/collection/collection_19.jpg" },
+
+  { id: "O07", category: "Others",  label: "Modern Vanity Dresser",          sub: "White dressing table with mirror and shelves",    src: "/collection/collection_18.jpg" },
+  { id: "O10", category: "Others",    label: "Bathroom Partition Door",            sub: "Aluminum Frosted Glass System",      src: "/collection/collection_5.jpg" },
 ];
 
 const FILTERS = ["All", "Cabinet", "Door", "Window", "Others"];
@@ -138,13 +137,17 @@ function ImageLightbox({ items, activeIndex, onClose, onNavigate }) {
             style={{ maxWidth: "88vw", maxHeight: "82vh" }}
           />
           {/* Label bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="absolute bottom-0 left-0 right-0 flex items-end justify-between px-5 py-4"
-            style={{ background: "linear-gradient(to top, rgba(18,15,12,0.75), transparent)" }}
-          >
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }} 
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+              className="absolute bottom-0 left-0 right-0 flex items-end justify-between px-6 py-10"
+              style={{ 
+                /* Deepens the bottom and extends the fade higher for better legibility */
+                background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)" 
+              }}
+            >
+            <div >
               <p className="text-[9px] tracking-[0.3em] uppercase text-[#fff] mb-0.5"
                 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}>
                 {current.id} · {current.sub}
@@ -160,6 +163,7 @@ function ImageLightbox({ items, activeIndex, onClose, onNavigate }) {
             </svg>
           </motion.div>
         </motion.div>
+        
       </AnimatePresence>
 
       {/* Prev */}
@@ -393,7 +397,7 @@ function CollectionCard({ item, index, onOpen }) {
 
       {/* Top row */}
       <div className="absolute top-4 left-4 right-4 flex items-start justify-between">
-        <span className="text-[9px] tracking-[0.25em] text-white/30"
+        <span className="text-[9px] tracking-[0.25em] text-white/70 bg-[#1a1714] px-2 py-1"
           style={{ fontFamily: "'DM Sans', sans-serif" }}>{item.id}</span>
         <motion.span
           animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : -4 }}
