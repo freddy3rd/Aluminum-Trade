@@ -319,6 +319,7 @@ function CollectionCard({ item, index, onOpen }) {
   return (
     <motion.div
       layout
+      key={index}
       variants={fadeUp}
       custom={index}
       initial="hidden"

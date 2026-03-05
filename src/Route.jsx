@@ -20,7 +20,7 @@ const AppRoutes = () => {
     <BrowserRouter>
       <SplashScreen
         videoSrc={slinding_panel}
-        title="Threshold"
+        title="ALUMCRAFT"
         subtitle="Architectural Systems"
         minDuration={2200}
         onComplete={() => setSplashDone(true)}

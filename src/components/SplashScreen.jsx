@@ -16,7 +16,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const SplashScreen = ({
   videoSrc,
   minDuration = 2200,
-  title = "Threshold",
+  title = "ALUMCRAFT",
   subtitle = "Architectural Systems",
   onComplete,
 }) => {
