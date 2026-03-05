@@ -12,7 +12,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import slinding_panel from "@/assets/video/Sliding_panel_animation.mp4";
 import SplashScreen from "./components/SplashScreen";
-import PageReveal from "./components/ui/PageReveal";
+
 
 const AppRoutes = () => {
   const [splashDone, setSplashDone] = useState(false);
@@ -35,9 +35,9 @@ const AppRoutes = () => {
               <Route
                   path="/"
                   element={
-                    <PageReveal>
+                    
                       <Homepage />
-                    </PageReveal>
+   
                   }
                 />
               <Route path="/studio" element={<StudioSection />} />
