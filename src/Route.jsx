@@ -12,6 +12,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import slinding_panel from "@/assets/video/Sliding_panel_animation.mp4";
 import SplashScreen from "./components/SplashScreen";
+import PageReveal from "./components/ui/PageReveal";
 
 const AppRoutes = () => {
   const [splashDone, setSplashDone] = useState(false);
@@ -25,20 +26,28 @@ const AppRoutes = () => {
         minDuration={2200}
         onComplete={() => setSplashDone(true)}
       />
-
-      {splashDone && (
-        <>
-          <ScrollToTop />
-          <Header />
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/studio" element={<StudioSection />} />
-            <Route path="/collections" element={<CollectionSection />} />
-            <Route path="/contact" element={<ContactSection />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </>
-      )}
+      <AnimatePresence mode="wait">
+        {splashDone && (
+          <>
+            <ScrollToTop />
+            <Header />
+            <Routes>
+              <Route
+                  path="/"
+                  element={
+                    <PageReveal>
+                      <Homepage />
+                    </PageReveal>
+                  }
+                />
+              <Route path="/studio" element={<StudioSection />} />
+              <Route path="/collections" element={<CollectionSection />} />
+              <Route path="/contact" element={<ContactSection />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </>
+        )}
+      </AnimatePresence>
     </BrowserRouter>
   );
 };
