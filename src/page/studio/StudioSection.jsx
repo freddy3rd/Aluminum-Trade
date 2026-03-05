@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, AnimatePresence  } from "framer-motion";
 
 const stats = [
   { value: "10+", label: "Years Forging Excellence" },
@@ -77,7 +77,8 @@ const StudioSection = () => {
   const imageRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const [activePillar, setActivePillar] = useState(null);
-
+  const [imgLoaded, setImgLoaded] = useState(false);
+  
   const { scrollYProgress } = useScroll({
     target: imageRef,
     offset: ["start end", "end start"],
@@ -139,6 +140,7 @@ const StudioSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-px bg-[#c8bfb4]/30">
 
           {/* Left — parallax image */}
+
           <motion.div
             custom={0}
             initial="hidden"
@@ -147,6 +149,55 @@ const StudioSection = () => {
             className="relative overflow-hidden bg-[#F5EFE6] aspect-[4/5] lg:aspect-auto lg:min-h-[620px]"
             ref={imageRef}
           >
+            {/* Skeleton */}
+            <AnimatePresence>
+              {!imgLoaded && (
+                <motion.div
+                  key="skeleton"
+                  initial={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="absolute inset-0 z-10"
+                >
+                  {/* Base warm tone */}
+                  <div className="absolute inset-0 bg-[#ede6db]" />
+                  {/* Shimmer sweep */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(105deg, transparent 40%, rgba(168,152,128,0.13) 50%, transparent 60%)",
+                      backgroundSize: "200% 100%",
+                      animation: "skeletonShimmer 1.8s infinite linear",
+                    }}
+                  />
+                  {/* Subtle horizontal grain */}
+                  <div
+                    className="absolute inset-0 opacity-40"
+                    style={{
+                      backgroundImage: `repeating-linear-gradient(
+                        0deg,
+                        transparent,
+                        transparent 3px,
+                        rgba(168,152,128,0.04) 3px,
+                        rgba(168,152,128,0.04) 6px
+                      )`,
+                    }}
+                  />
+                  {/* Bottom card placeholder */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <div className="border border-[#a89880]/20 bg-[#F5EFE6]/60 p-6 space-y-3">
+                      <div className="h-2 w-24 rounded-sm bg-[#a89880]/15" />
+                      <div className="h-5 w-40 rounded-sm bg-[#a89880]/12" />
+                      <div className="h-3 w-32 rounded-sm bg-[#a89880]/10" />
+                      <div className="h-px bg-[#c8bfb4]/40 my-1" />
+                      <div className="h-2 w-28 rounded-sm bg-[#a89880]/10" />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <motion.div
               className="absolute inset-[-8%] w-[116%] h-[116%]"
               style={{ y: imageY }}
@@ -155,16 +206,18 @@ const StudioSection = () => {
                 src="/studio/studio_1.jpg"
                 alt="Aluminium fabrication studio"
                 className="w-full h-full object-cover"
+                onLoad={() => setImgLoaded(true)}
               />
             </motion.div>
 
             {/* Warm vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#F5EFE6]/80 via-[#F5EFE6]/20 to-transparent" /><div className="absolute inset-0 bg-gradient-to-r from-[#F5EFE6]/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#F5EFE6]/80 via-[#F5EFE6]/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#F5EFE6]/20 to-transparent" />
 
             {/* ── Enhanced location card ── */}
             <div className="absolute bottom-0 left-0 right-0 p-8">
-              
-              <a  href={MAP_HREF}
+              <a
+                href={MAP_HREF}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group block"
@@ -184,7 +237,6 @@ const StudioSection = () => {
                         Est. 2025 · Studio Location
                       </span>
                     </div>
-                    {/* External link arrow */}
                     <svg
                       width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
@@ -206,11 +258,9 @@ const StudioSection = () => {
                     <em className="text-[#7a6a58]">Quezon City, 1127 Metro Manila</em>
                   </p>
 
-                      {/* Decorative divider */}
-                      <div className="h-px bg-[#c8bfb4]/60 mb-3" />
+                  <div className="h-px bg-[#c8bfb4]/60 mb-3" />
 
-                      {/* Direction hint */}
-                      <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2">
                     <motion.div
                       className="h-px bg-[#a89880] origin-left"
                       style={{ width: "20px" }}
@@ -224,13 +274,11 @@ const StudioSection = () => {
                     >
                       Open in Google Maps
                     </span>
-
                   </div>
                 </div>
               </a>
             </div>
           </motion.div>
-
           {/* Right — stats + pillars */}
           <div className="bg-[#F5EFE6] flex flex-col">
 

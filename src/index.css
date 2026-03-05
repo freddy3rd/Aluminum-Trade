@@ -29,6 +29,15 @@ html {
   font-display: swap;
   /* font-style: */
 }
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
 /* a {
   font-weight: 500;
   color: #646cff;

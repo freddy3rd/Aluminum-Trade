@@ -287,8 +287,80 @@ function ImageLightbox({ images, activeIndex, onClose, onNavigate }) {
 }
 
 // ── GalleryCard ──────────────────────────────────────────────────────────────
+// function GalleryCard({ image, index, onOpen }) {
+//   const [hovered, setHovered] = useState(false);
+//   const isMobile = useMediaQuery({ maxWidth: 767 });
+//   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+//   const isLaptop = useMediaQuery({ minWidth: 1024, maxWidth: 1439 });
+//   const isDesktop = useMediaQuery({ minWidth: 1440 });
+
+//   return (
+//     <motion.div
+//       variants={fadeUpVariants}
+//       custom={index}
+//       className={`relative overflow-hidden bg-[#1a1714] group cursor-pointer ${isDesktop ||  isLaptop? image.span : ""}`}
+//       // style={{ minHeight: image.span === "row-span-2" ? 480 : 220 }}
+//       onMouseEnter={() => setHovered(true)}
+//       onMouseLeave={() => setHovered(false)}
+//       onClick={() => onOpen(index)}
+//     >
+//       {/* Image with zoom */}
+//       <motion.img
+//         src={image.src}
+//         alt={image.alt}
+//         className="absolute inset-0 w-full h-full object-cover"
+//         animate={{ scale: hovered ? 1.07 : 1 }}
+//         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+//         style={{ willChange: "transform" }}
+//       />
+
+//       {/* Dark vignette */}
+//       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+//       {/* Corner number */}
+//       <span
+//         className="absolute top-4 left-4 text-[9px] tracking-[0.25em] text-white/30"
+//         style={{ fontFamily: "'DM Sans', sans-serif" }}
+//       >
+//         {image.id}
+//       </span>
+
+//       {/* Label — slides up on hover */}
+//       <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+//         <motion.span
+//           animate={{ y: hovered ? 0 : 6, opacity: hovered ? 1 : 0.6 }}
+//           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+//           className="alum-badge text-white/70"
+//           style={{ fontFamily: "'DM Sans', sans-serif" }}
+//         >
+//           {image.label}
+//         </motion.span>
+
+//         {/* Expand icon */}
+//         <motion.div
+//           animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.8 }}
+//           transition={{ duration: 0.3 }}
+//           className="w-8 h-8 border border-white/30 flex items-center justify-center bg-white/5 backdrop-blur-sm"
+//         >
+//           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
+//               d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+//           </svg>
+//         </motion.div>
+//       </div>
+
+//       {/* Hover border shimmer */}
+//       <motion.div
+//         className="absolute inset-0 border border-white/0 pointer-events-none"
+//         animate={{ borderColor: hovered ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0)" }}
+//         transition={{ duration: 0.3 }}
+//       />
+//     </motion.div>
+//   );
+// }
 function GalleryCard({ image, index, onOpen }) {
   const [hovered, setHovered] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
   const isLaptop = useMediaQuery({ minWidth: 1024, maxWidth: 1439 });
@@ -298,12 +370,42 @@ function GalleryCard({ image, index, onOpen }) {
     <motion.div
       variants={fadeUpVariants}
       custom={index}
-      className={`relative overflow-hidden bg-[#1a1714] group cursor-pointer ${isDesktop ||  isLaptop? image.span : ""}`}
-      // style={{ minHeight: image.span === "row-span-2" ? 480 : 220 }}
+      className={`relative overflow-hidden bg-[#1a1714] group cursor-pointer ${isDesktop || isLaptop ? image.span : ""}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => onOpen(index)}
     >
+      {/* Skeleton */}
+      <AnimatePresence>
+        {!imgLoaded && (
+          <motion.div
+            key="skeleton"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 z-10"
+          >
+            <div className="absolute inset-0 bg-[#1a1714]" />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%)",
+                backgroundSize: "200% 100%",
+                animation: "skeletonShimmer 1.8s infinite linear",
+              }}
+            />
+            {/* Corner id placeholder */}
+            <div className="absolute top-4 left-4 h-2 w-6 rounded-sm bg-white/8" />
+            {/* Bottom label placeholder */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between">
+              <div className="h-3 w-24 rounded-sm bg-white/8" />
+              <div className="w-8 h-8 border border-white/10 bg-white/5" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Image with zoom */}
       <motion.img
         src={image.src}
@@ -312,6 +414,7 @@ function GalleryCard({ image, index, onOpen }) {
         animate={{ scale: hovered ? 1.07 : 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         style={{ willChange: "transform" }}
+        onLoad={() => setImgLoaded(true)}
       />
 
       {/* Dark vignette */}
