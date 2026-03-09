@@ -212,110 +212,7 @@ function ImageLightbox({ items, activeIndex, onClose, onNavigate }) {
   );
 }
 
-// ── CollectionCard ────────────────────────────────────────────────────────────
-// function CollectionCard({ item, index, onOpen }) {
-//   const [hovered, setHovered] = useState(false);
 
-//   return (
-//     <motion.div
-//       layout
-//       variants={fadeUp}
-//       custom={index}
-//       initial="hidden"
-//       animate="visible"
-//       exit="exit"
-//       className="relative overflow-hidden bg-[#1a1714] group cursor-pointer"
-//       style={{ aspectRatio: "3/4" }}
-//       onMouseEnter={() => setHovered(true)}
-//       onMouseLeave={() => setHovered(false)}
-//       onClick={() => onOpen(index)}
-//     >
-//       {/* Image */}
-//       <motion.img
-//         src={item.src} alt={item.label}
-//         className="absolute inset-0 w-full h-full object-cover"
-//         animate={{ scale: hovered ? 1.07 : 1 }}
-//         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-//         style={{ willChange: "transform" }}
-//       />
-
-//       {/* Vignette */}
-//       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-
-//       {/* Top row */}
-//       <div className="absolute top-4 left-4 right-4 flex items-start justify-between">
-//         <span className="text-[9px] tracking-[0.25em] text-white/30"
-//           style={{ fontFamily: "'DM Sans', sans-serif" }}>{item.id}</span>
-//         <motion.span
-//           animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : -4 }}
-//           transition={{ duration: 0.3 }}
-//           className="text-[8px] tracking-[0.2em] uppercase text-[#a89880]/80 border border-[#a89880]/30 px-2 py-0.5"
-//           style={{ fontFamily: "'DM Sans', sans-serif" }}
-//         >
-//           {item.category}
-//         </motion.span>
-//       </div>
-
-//       {/* Bottom info */}
-//       <div className="absolute bottom-0 left-0 right-0 p-5
-//         bg-gradient-to-t from-black/70 via-black/40 to-transparent">
-
-//         <motion.div
-//           animate={{ y: hovered ? 0 : 4 }}
-//           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-//         >
-//           <p
-//             className="text-[10px] tracking-[0.2em] uppercase text-white/80 mb-1"
-//             style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400 }}
-//           >
-//             {item.sub}
-//           </p>
-
-//           <p
-//             className="text-white text-xl leading-snug"
-//             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
-//           >
-//             {item.label}
-//           </p>
-//         </motion.div>
-
-//         <motion.div
-//           animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 6 }}
-//           transition={{ duration: 0.3, delay: hovered ? 0.05 : 0 }}
-//           className="mt-3 flex items-center gap-2"
-//         >
-//           <div className="h-px w-4 bg-[#a89880]/70" />
-//           <span
-//             className="text-[9px] tracking-[0.22em] uppercase text-[#d6c7a8]"
-//             style={{ fontFamily: "'DM Sans', sans-serif" }}
-//           >
-//             View Full Size
-//           </span>
-//         </motion.div>
-//       </div>
-
-//       {/* Expand icon top-right on hover */}
-//       <motion.div
-//         animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.8 }}
-//         transition={{ duration: 0.25 }}
-//         className="absolute top-4 right-4 w-8 h-8 border border-white/25 flex items-center justify-center bg-black/20 backdrop-blur-sm"
-//         style={{ pointerEvents: "none" }}
-//       >
-//         <svg className="w-3 h-3 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
-//             d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
-//         </svg>
-//       </motion.div>
-
-//       {/* Border shimmer */}
-//       <motion.div
-//         className="absolute inset-0 border pointer-events-none"
-//         animate={{ borderColor: hovered ? "rgba(168,152,128,0.2)" : "rgba(168,152,128,0)" }}
-//         transition={{ duration: 0.3 }}
-//       />
-//     </motion.div>
-//   );
-// }
 function CollectionCard({ item, index, onOpen }) {
   const [hovered, setHovered] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -488,12 +385,12 @@ export default function CollectionSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#F5EFE6] overflow-hidden py-28 px-6 md:px-16"
+      className="relative bg-[#F5EFE6] overflow-hidden py-28 px-6 md:px-16 min-h-screen"
     >
       {/* Top rule */}
-      <div className="absolute top-0 left-16 right-16 h-px bg-gradient-to-r from-transparent via-[#a89880]/40 to-transparent" />
+      <div className="absolute top-0 left-16 right-16 h-px bg-gradient-to-r from-transparent via-[#a89880]/40 to-transparent " />
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto ">
 
         {/* ── Header ── */}
         <motion.div
@@ -580,7 +477,7 @@ export default function CollectionSection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 min-h-[500px]"
           >
             {filtered.map((item, i) => (
               <CollectionCard
@@ -619,7 +516,7 @@ export default function CollectionSection() {
       </div>
 
       {/* Bottom rule */}
-      <div className="absolute bottom-0 left-16 right-16 h-px bg-gradient-to-r from-transparent via-[#a89880]/40 to-transparent" />
+      <div className="absolute bottom-0 left-16 right-16 h-px bg-gradient-to-r from-transparent via-[#a89880]/40 to-transparent " />
 
       {/* ── Lightbox ── */}
       <AnimatePresence>

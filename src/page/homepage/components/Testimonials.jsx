@@ -229,7 +229,7 @@ export default function Testimonials() {
           // onMouseLeave={resume}
         >
           {/* Three-card view — desktop */}
-          <div className="hidden md:grid grid-cols-3 gap-5 items-stretch">
+          <div className="hidden md:grid grid-cols-3 gap-5 items-stretch min-h-[320px]">
             {/* Prev ghost card */}
             <div
               className="relative rounded-none border border-[#c8bfb4]/50 bg-[#ede7de]/60 p-8 flex flex-col gap-5 cursor-pointer opacity-50 hover:opacity-70 transition-opacity duration-300 select-none"
@@ -237,7 +237,7 @@ export default function Testimonials() {
             >
               <div className="flex items-start justify-between">
                 <QuoteIcon />
-                <div className="flex gap-0.5 text-[#c8bfb4]">
+                <div className="flex gap-0.5 text-[#9c8870]">
                   {Array.from({ length: prev1.rating }).map((_, i) => <StarIcon key={i} />)}
                 </div>
               </div>
@@ -297,11 +297,11 @@ export default function Testimonials() {
                       {curr.initials}
                     </div>
                     <div className="flex-1">
-                      <p className="text-white/90 text-sm" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>{curr.name}</p>
+                      <p className="text-white/90 text-sm whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>{curr.name}</p>
                       <p className="text-white/35 text-[10px]" style={{ fontFamily: "'DM Sans', sans-serif", letterSpacing: "0.1em" }}>{curr.location}</p>
                     </div>
                     <span
-                      className="alum-badge text-white/20"
+                      className="alum-badge text-white/20 text-right"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     >
                       {curr.project}
@@ -318,7 +318,7 @@ export default function Testimonials() {
             >
               <div className="flex items-start justify-between">
                 <QuoteIcon />
-                <div className="flex gap-0.5 text-[#c8bfb4]">
+                <div className="flex gap-0.5 text-[#9c8870]">
                   {Array.from({ length: next1.rating }).map((_, i) => <StarIcon key={i} />)}
                 </div>
               </div>

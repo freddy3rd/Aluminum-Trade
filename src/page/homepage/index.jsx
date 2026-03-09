@@ -11,6 +11,7 @@ import SolutionSection from './components/SolutionsSection'
 import ClosingCTA from './components/ContactSection'
 import Testimonials from './components/Testimonials'
 
+
 const Homepage = () => {
   return (
       <div className='relative min-h-screen w-full overflow-x-hidden'>
@@ -22,6 +23,7 @@ const Homepage = () => {
         <Testimonials/>
         <HowItWorks/>
         <ClosingCTA/>
+        
       </div>
 
   )

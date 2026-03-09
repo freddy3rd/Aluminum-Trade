@@ -66,7 +66,7 @@ const Hero = () => {
         />
         
         {/* Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/40 to-black/60 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/70 to-black/80 z-10" />
         <div className="absolute inset-0 opacity-[0.03] z-20 pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjAwIDIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZmlsdGVyIGlkPSdub2lzZUZpbHRlcic+PGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9JzAuOScgbnVtT2N0YXZlcz0nNCcgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNub2lzZUZpbHRlciknLz48L3N2Zz4=')]" />
 
         {/* Content */}
@@ -90,31 +90,49 @@ const Hero = () => {
               initial={{ width: 0 }} 
               animate={{ width: '100%' }} 
               transition={{ delay: 0.8, duration: 1.5 }}
-              className="h-px bg-gradient-to-r from-transparent via-white/60 to-transparent max-w-md mb-8" 
+              className="h-px bg-gradient-to-r from-transparent via-white/60 to-transparent max-w-md mb-8 " 
             />
 
             <motion.p 
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
               transition={{ delay: 1 }}
-              className="text-gray-300 text-lg font-light leading-relaxed max-w-md mb-10"
+              className="text-gray-300 text-lg font-light leading-relaxed max-w-md mb-10 "
             >
               Where minimalist design meets structural integrity. Our door systems redefine the boundary between interior and exterior space.
             </motion.p>
-
-            <button 
-            //   onMouseMove={handleMagneticMove}
-            //   onMouseLeave={handleMagneticLeave}
-              className="group relative px-10 py-4 border border-white/30 text-sm tracking-widest uppercase overflow-hidden transition-colors duration-500 hover:text-black"
-            >
-              <span className="relative z-10 flex items-center gap-4">
-                Explore Collection
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className='flex flex-col md:flex-row gap-2 flex-wrap'>
+             
+              <button
+                className="group relative flex items-center gap-4 text-[12px] font-medium tracking-[0.25em] uppercase text-[#F5EFE6] hover:text-black border border-[#a89880]/60 px-8 py-3 overflow-hidden transition-colors duration-500 "
+              >
+                <span className="relative z-10">Explore Collections</span>
+                <svg
+                  className="w-3.5 h-3.5 relative z-10 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </span>
-              <div className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1)" />
-            </button>
+                <div className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500" />
+              </button>
+
+              <button
+                className="group relative flex items-center gap-4 text-[12px] tracking-[0.25em] bg-white text-black uppercase border border-[#a89880]/60 px-8 py-3 overflow-hidden transition-colors duration-500"
+              >
+                <span className="relative z-10 font-medium">Request Quotations</span>
+                <svg
+                  className="w-3.5 h-3.5 relative z-10 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+                {/* <div className="absolute inset-0 w-full h-full bg-[#F5EFE6]/60" /> */}
+              </button>
+            </div>
           </div>
 
           {/* Specs Grid */}

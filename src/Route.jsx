@@ -12,6 +12,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import slinding_panel from "@/assets/video/Sliding_panel_animation.mp4";
 import SplashScreen from "./components/SplashScreen";
+import { FloatingContact } from "./components/layout/Form";
 
 
 const AppRoutes = () => {
@@ -47,6 +48,7 @@ const AppRoutes = () => {
             </Routes>
           </>
         )}
+        <FloatingContact />
       </AnimatePresence>
     </BrowserRouter>
   );
