@@ -2,7 +2,7 @@ async function sendEmail(setIsSubmitting, setIsSubmit, formData) {
   setIsSubmitting(true);
 
   try {
-    const response = await fetch("/api/contact", {
+    const response = await fetch("/api/contact.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

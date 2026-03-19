@@ -9,6 +9,10 @@ export default async function handler(req, res) {
   try {
     const { name, phone, message } = req.body;
 
+    if (!name || !message) {
+      return res.status(400).json({ error: "Missing fields" });
+    }
+
     const transporter = nodemailer.createTransport({
       host: "smtp-relay.brevo.com",
       port: 587,
