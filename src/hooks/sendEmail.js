@@ -1,5 +1,5 @@
 async function sendEmail(setIsSubmitting, setIsSubmit, formData) {
-  setIsSubmitting(false);
+  setIsSubmitting(true);
 
   try {
     const response = await fetch("/api/contact", {
@@ -9,8 +9,9 @@ async function sendEmail(setIsSubmitting, setIsSubmit, formData) {
     });
 
     if (response.ok) {
-      setFormState(formData);
+      setIsSubmitting(false);
       setIsSubmit(true);
+      // setFormState({ name: "", phone: "", message: "" });
     } else {
       throw new Error("Failed to send");
     }
