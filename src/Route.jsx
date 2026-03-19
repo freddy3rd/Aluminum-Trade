@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { HashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter,BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import Header from "./components/layout/Header";
@@ -19,7 +19,7 @@ const AppRoutes = () => {
   const [splashDone, setSplashDone] = useState(false);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <SplashScreen
         videoSrc={slinding_panel}
         title="ALUMCRAFT"
@@ -50,7 +50,7 @@ const AppRoutes = () => {
         )}
         <FloatingContact />
       </AnimatePresence>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
