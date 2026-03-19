@@ -171,6 +171,7 @@ export default function ClosingCTA() {
             />
 
             <button
+              onClick={() => (window.location.href = "/contact")}
               className="group relative px-14 py-5 bg-white text-[#0a0a0a] text-[11px] tracking-[0.25em] uppercase overflow-hidden hover:text-white transition-colors duration-500"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}
             >
@@ -193,7 +194,7 @@ export default function ClosingCTA() {
           >
             {/* Phone */}
             <a
-              href="tel:+639511451225"
+              href="tel:+639919423577"
               className="group flex items-center gap-3 text-white/40 hover:text-white/80 transition-colors duration-300"
             >
               <div className="w-9 h-9 rounded-full border border-white/10 group-hover:border-white/25 flex items-center justify-center transition-colors duration-300">
@@ -203,7 +204,7 @@ export default function ClosingCTA() {
                 className="text-sm tracking-wide"
                 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}
               >
-                +63 951 145 1225
+                +63 991 942 3577
               </span>
             </a>
 
@@ -233,7 +234,7 @@ export default function ClosingCTA() {
 
             {/* Messenger */}
             <a
-              href="https://m.me/yourpage"
+              href="https://www.facebook.com/jonard.barrete"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-3 text-white/40 hover:text-[#0084FF] transition-colors duration-300"

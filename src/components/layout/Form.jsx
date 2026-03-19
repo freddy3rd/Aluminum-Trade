@@ -19,12 +19,15 @@ const display = "'Cormorant Garamond', Georgia, serif";
 const body    = "'DM Sans', sans-serif";
 
 // ── Contact items ─────────────────────────────────────────────────────────────
+const MAP_HREF =
+  "https://www.google.com/maps/place/J.B.+UPHOLSTERY+SHOP/@14.6817439,121.0712189,3a,75y,256.09h,87.56t/data=!3m7!1e1!3m5!1sZQ0a392GruZ98HSOQElPJg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D2.442923226712523%26panoid%3DZQ0a392GruZ98HSOQElPJg%26yaw%3D256.08905789080296!7i16384!8i8192!4m16!1m9!3m8!1s0x3397b0ace602a773:0x71020c73b77cc7c3!2s49+Air+Force+Rd,+Quezon+City,+Metro+Manila!3b1!8m2!3d14.6817523!4d121.0714892!10e5!16s%2Fg%2F11h5npyrt4!3m5!1s0x3397b0ace6d7d64b:0x88a10cffc718218e!8m2!3d14.6816118!4d121.0711632!16s%2Fg%2F11y50zrcss?entry=ttu&g_ep=EgoyMDI2MDMwMS4xIKXMDSoASAFQAw%3D%3D";
+
 const contacts = [
   {
     id: "01",
     label: "Visit",
     value: "53 AFP Road, QC",
-    href: "https://maps.google.com",
+    href: MAP_HREF,
     target: "_blank",
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
@@ -35,8 +38,8 @@ const contacts = [
   {
     id: "02",
     label: "Call",
-    value: "+63 2 8123 4567",
-    href: "tel:+6328123 4567",
+    value: "+63 991 942 3577",
+    href: "tel:+63991942 3577",
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
@@ -46,29 +49,29 @@ const contacts = [
   {
     id: "03",
     label: "Email",
-    value: "studio@alumcraft.ph",
-    href: "mailto:studio@alumcraft.ph",
+    value: "alumcraft49@gmail.com",
+    href: "mailto:alumcraft49@gmail.com",
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
       </svg>
     ),
   },
-  {
-    id: "04",
-    label: "Viber",
-    value: "+63 9XX XXX XXXX",
-    href: "viber://chat?number=%2B639XXXXXXXXX",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-      </svg>
-    ),
-  },
+  // {
+  //   id: "04",
+  //   label: "Viber",
+  //   value: "+63 9XX XXX XXXX",
+  //   href: "viber://chat?number=%2B639XXXXXXXXX",
+  //   icon: (
+  //     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+  //       <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+  //     </svg>
+  //   ),
+  // },
 ];
 
 // ── Form state ────────────────────────────────────────────────────────────────
-const empty = { name: "", phone: "", interest: "" };
+const empty = { name: "", phone: "", message: "" };
 const interests = ["Cabinet", "Door", "Window", "Others"];
 
 // ── Floating Contact Panel ────────────────────────────────────────────────────
@@ -77,6 +80,7 @@ export function FloatingContact() {
   const [tab, setTab]             = useState("info"); // "info" | "form"
   const [form, setForm]           = useState(empty);
   const [sent, setSent]           = useState(false);
+  const [isSubmitting, setIsSubmitting]           = useState(false);
   const [pulse, setPulse]         = useState(true);
 
   // Stop pulse after first open
@@ -88,7 +92,9 @@ export function FloatingContact() {
   const toggleInterest = (v) =>
     setForm((f) => ({ ...f, interest: f.interest === v ? "" : v }));
   const submit = () => {
-    if (form.name && form.phone) setSent(true);
+    if (form.name && form.phone){
+      sendEmail(setSent, setSubmitted, form)
+    }
   };
   const reset = () => { setForm(empty); setSent(false); setTab("info"); };
 
@@ -411,7 +417,7 @@ export function FloatingContact() {
                             onMouseEnter={e => { e.currentTarget.style.color = C.bg; e.currentTarget.querySelector(".fill-bg").style.transform = "translateX(0)"; }}
                             onMouseLeave={e => { e.currentTarget.style.color = C.text; e.currentTarget.querySelector(".fill-bg").style.transform = "translateX(-101%)"; }}
                           >
-                            <span style={{ position: "relative", zIndex: 1 }}>Send Enquiry</span>
+                            {!isSubmitting ? <span style={{ position: "relative", zIndex: 1 }}>Send Enquiry</span> : <span style={{ position: "relative", zIndex: 1 }}>Submitting...</span>}
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
                               style={{ position: "relative", zIndex: 1 }}>
                               <path d="M17 8l4 4m0 0l-4 4m4-4H3"/>

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { NavLink } from "react-router-dom";
 
 const steps = [
   {
@@ -235,7 +236,8 @@ export default function HowItWorks() {
             Typical project timeline — 3 to 5 weeks from consultation to installation.
           </p>
 
-          <button
+          <NavLink
+            to="/contact"
             className="group relative px-10 py-4 border border-white/20 text-[11px] tracking-widest uppercase overflow-hidden hover:text-black transition-colors duration-500 flex-shrink-0"
             style={{ fontFamily: "'DM Sans', sans-serif"}}
           >
@@ -248,7 +250,7 @@ export default function HowItWorks() {
               </svg>
             </span>
             <div className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500" />
-          </button>
+          </NavLink>
         </motion.div>
       </div>
 

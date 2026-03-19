@@ -5,7 +5,7 @@ import image_2 from "/collection/collection_7.jpg";
 import image_3 from "/collection/collection_8.jpg";
 import image_4 from "/collection/collection_1.jpg";
 import { useMediaQuery } from "react-responsive";
-
+import { NavLink } from "react-router-dom";
 const galleryImages = [
   {
     id: "01",
@@ -561,8 +561,9 @@ export default function FeaturedCollections() {
             </div>
 
             <motion.div variants={fadeUpVariants} className="mt-2">
-              <button
-                className="group relative flex items-center gap-4 text-[10px] tracking-[0.25em] uppercase text-[#1a1714] border border-[#a89880]/60 px-8 py-3 overflow-hidden hover:text-[#F5EFE6] transition-colors duration-500"
+              <NavLink
+                to="/contact"
+                className="group relative flex items-center gap-4 w-[max-content] text-[10px] tracking-[0.25em] uppercase text-[#1a1714] border border-[#a89880]/60 px-8 py-3 overflow-hidden hover:text-[#F5EFE6] transition-colors duration-500"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
                 <span className="relative z-10">Request Quote</span>
@@ -573,7 +574,7 @@ export default function FeaturedCollections() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
                 <div className="absolute inset-0 bg-[#2a1f17] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500" />
-              </button>
+              </NavLink>
             </motion.div>
           </motion.div>
         </motion.div>

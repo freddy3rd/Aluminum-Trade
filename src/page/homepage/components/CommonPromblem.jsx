@@ -224,7 +224,7 @@ const ProblemsSection = () => {
           >
             Aluminium eliminates every one of these failure points — permanently.
           </p>
-          <button
+          {/* <button
             className="group relative flex items-center gap-4 text-[10px] tracking-[0.25em] uppercase text-[#1a1714] border border-[#a89880]/60 px-8 py-3 overflow-hidden hover:text-[#F5EFE6] transition-colors duration-500"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
@@ -238,7 +238,7 @@ const ProblemsSection = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
             <div className="absolute inset-0 bg-[#2a1f17] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500" />
-          </button>
+          </button> */}
         </motion.div>
       </div>
     </section>

@@ -6,7 +6,7 @@ import { NavLink, useLocation } from "react-router-dom";
 const navItems = [
   { label: "Collection", to: "/collections" },
   { label: "Studio", to: "/studio" },
-  { label: "Contact", to: "/contact" },
+  // { label: "Contact", to: "/contact" },
 ];
 
 /* ───────────────── LOGO ───────────────── */
@@ -115,14 +115,15 @@ export default function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.8 }}
           >
-            <button
+            <NavLink
+                to="/contact"
                 className="group relative flex items-center gap-4 text-[10px] tracking-[0.25em] uppercase text-[#1a1714] border border-[#a89880]/60 px-8 py-3 overflow-hidden hover:text-[#F5EFE6] transition-colors duration-500 cursor-pointer"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
                 <span className="relative z-10">ENQUIRE</span>
                 
                 <div className="absolute inset-0 bg-[#2a1f17] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500" />
-              </button>
+              </NavLink>
           </motion.li>
         </ul>
 

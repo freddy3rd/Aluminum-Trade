@@ -159,7 +159,7 @@ export default function SolutionSection() {
       ScrollTrigger.create({
         trigger: container,
         start: 'top top',
-        end: '+=3000',
+        end: '+=5000',
         scrub: 0.3,
         pin: true,
       onUpdate: (self) => {

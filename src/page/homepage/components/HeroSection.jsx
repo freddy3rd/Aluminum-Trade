@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useSpring, animate } from 'framer-moti
 import slinding_panel from '@/assets/video/Sliding_panel_animation.mp4'
 import slinding_panel_reverse from '@/assets/video/Sliding_panel_animation_reversed.mp4'
 import SmoothForwardBackwardVideo from '../../../components/ui/PingPongVid';
-
+import { NavLink } from "react-router-dom";
 
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -103,7 +103,8 @@ const Hero = () => {
             </motion.p>
             <div className='flex flex-col md:flex-row gap-2 flex-wrap'>
              
-              <button
+              <NavLink
+                to="/collections"
                 className="group relative flex items-center gap-4 text-[12px] font-medium tracking-[0.25em] uppercase text-[#F5EFE6] hover:text-black border border-[#a89880]/60 px-8 py-3 overflow-hidden transition-colors duration-500 "
               >
                 <span className="relative z-10">Explore Collections</span>
@@ -116,9 +117,10 @@ const Hero = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
                 <div className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500" />
-              </button>
+              </NavLink>
 
-              <button
+              <NavLink
+                to="/contact"
                 className="group relative flex items-center gap-4 text-[12px] tracking-[0.25em] bg-white text-black uppercase border border-[#a89880]/60 px-8 py-3 overflow-hidden transition-colors duration-500"
               >
                 <span className="relative z-10 font-medium">Request Quotations</span>
@@ -131,7 +133,7 @@ const Hero = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
                 {/* <div className="absolute inset-0 w-full h-full bg-[#F5EFE6]/60" /> */}
-              </button>
+              </NavLink>
             </div>
           </div>
 

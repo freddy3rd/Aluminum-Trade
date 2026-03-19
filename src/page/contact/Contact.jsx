@@ -1,14 +1,18 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import sendEmail from "../../hooks/sendEmail";
 
 // ── Contact data ──────────────────────────────────────────────────────────────
+const MAP_HREF =
+  "https://www.google.com/maps/place/J.B.+UPHOLSTERY+SHOP/@14.6817439,121.0712189,3a,75y,256.09h,87.56t/data=!3m7!1e1!3m5!1sZQ0a392GruZ98HSOQElPJg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D2.442923226712523%26panoid%3DZQ0a392GruZ98HSOQElPJg%26yaw%3D256.08905789080296!7i16384!8i8192!4m16!1m9!3m8!1s0x3397b0ace602a773:0x71020c73b77cc7c3!2s49+Air+Force+Rd,+Quezon+City,+Metro+Manila!3b1!8m2!3d14.6817523!4d121.0714892!10e5!16s%2Fg%2F11h5npyrt4!3m5!1s0x3397b0ace6d7d64b:0x88a10cffc718218e!8m2!3d14.6816118!4d121.0711632!16s%2Fg%2F11y50zrcss?entry=ttu&g_ep=EgoyMDI2MDMwMS4xIKXMDSoASAFQAw%3D%3D";
+
 const contactDetails = [
   {
     id: "01",
     label: "Visit Us",
     value: "53 AFP Road, Quezon City",
     sub: "1127 Metro Manila, Philippines",
-    href: "https://maps.google.com",
+    href: MAP_HREF,
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
@@ -18,7 +22,7 @@ const contactDetails = [
   {
     id: "02",
     label: "Call Us",
-    value: "+63 2 8123 4567",
+    value: "+63 9919423577",
     sub: "Mon–Sat, 8:00am – 6:00pm",
     href: "tel:+6328123 4567",
     icon: (
@@ -30,9 +34,9 @@ const contactDetails = [
   {
     id: "03",
     label: "Email Us",
-    value: "studio@alumcraft.ph",
+    value: "alumcraft49@gmail.com",
     sub: "Response within 24 hours",
-    href: "mailto:studio@alumcraft.ph",
+    href: "mailto:alumcraft49@gmail.com",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
@@ -132,10 +136,17 @@ export default function ContactSection() {
   const isInView   = useInView(sectionRef, { once: true, margin: "-80px" });
   const [hoveredSocial, setHoveredSocial] = useState(null);
   const [formState, setFormState] = useState({ name: "", phone: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = () => {
-    if (formState.name && formState.phone) setSubmitted(true);
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formState.name && formState.phone){
+        sendEmail(setIsSubmitting, setSubmitted, formState)
+    }
+      
+      
   };
 
   return (
@@ -285,13 +296,13 @@ export default function ContactSection() {
               variants={fadeUp}
               className="px-8 py-7"
             >
-              <p className="text-[9px] tracking-[0.28em] uppercase text-[#9c8870] mb-5"
+              {/* <p className="text-[9px] tracking-[0.28em] uppercase text-[#9c8870] mb-5"
                 style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}>
                 Follow Our Work
-              </p>
+              </p> */}
 
-              <div className="grid grid-cols-2 gap-px bg-[#c8bfb4]/30">
-                {socials.map((s, i) => (
+              {/* <div className="grid grid-cols-2 gap-px bg-[#c8bfb4]/30"> */}
+                {/* {socials.map((s, i) => (
                   <motion.a
                     key={s.label}
                     href={s.href}
@@ -311,7 +322,7 @@ export default function ContactSection() {
                         style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}>{s.handle}</p>
                     </div>
 
-                    {/* Animated arrow */}
+                    
                     <motion.svg
                       width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
@@ -323,8 +334,8 @@ export default function ContactSection() {
                       <polyline points="15,3 21,3 21,9" /><line x1="10" y1="14" x2="21" y2="3" />
                     </motion.svg>
                   </motion.a>
-                ))}
-              </div>
+                ))} */}
+              {/* </div> */}
             </motion.div>
           </div>
 
@@ -441,7 +452,7 @@ export default function ContactSection() {
                     className="group relative mt-4 flex items-center gap-4 text-[10px] tracking-[0.25em] uppercase text-[#1a1714] border border-[#a89880]/60 px-8 py-4 overflow-hidden hover:text-[#F5EFE6] transition-colors duration-500 self-start"
                     style={{ fontFamily: "'DM Sans', sans-serif" }}
                   >
-                    <span className="relative z-10">Send Enquiry</span>
+                    {!isSubmitting ? <span className="relative z-10">Send Enquiry</span>: <span className="relative z-10">Submitting..</span>}
                     <svg className="w-3.5 h-3.5 relative z-10 transition-transform duration-300 group-hover:translate-x-1"
                       fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />

@@ -435,9 +435,7 @@ export default function Testimonials() {
           >
             All reviews from verified clients across Metro Manila.
           </p>
-          <div className="flex gap-1 text-[#c8bfb4]">
-            {Array.from({ length: 5 }).map((_, i) => <StarIcon key={i} />)}
-          </div>
+          
         </motion.div>
       </div>
 
