@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import image_2 from "@/assets/images/aluminum/image_2.webp"
+import { NavLink } from "react-router-dom";
 // ── Variants ─────────────────────────────────────────────────────────────────
 const containerVariants = {
   hidden: {},
@@ -170,21 +171,43 @@ export default function ClosingCTA() {
               style={{ margin: "-12px" }}
             />
 
-            <button
-              onClick={() => (window.location.href = "/contact")}
-              className="group relative px-14 py-5 bg-white text-[#0a0a0a] text-[11px] tracking-[0.25em] uppercase overflow-hidden hover:text-white transition-colors duration-500"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}
+
+            <NavLink
+              to="/contact"
+              className="
+                group relative inline-flex items-center justify-center
+                px-14 py-5
+                bg-white text-[#0a0a0a]
+                text-[11px] tracking-[0.25em] uppercase
+                overflow-hidden
+                hover:text-white
+                transition-colors duration-500
+              "
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 500,
+              }}
             >
               <span className="relative z-10 flex items-center gap-4">
                 Get Free Quote Now
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-2"
-                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+
+                <svg
+                  className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
                 </svg>
               </span>
-              <div className="absolute inset-0 bg-[#1a1714] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500" />
-            </button>
+
+              <div className="absolute inset-0 bg-[#1a1714] -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+            </NavLink>
           </motion.div>
 
           {/* ── Contact row ── */}
