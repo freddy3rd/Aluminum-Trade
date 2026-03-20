@@ -20,9 +20,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "/contact", // Your backend URL
+        target: "https://aluminum-trade.vercel.app",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/api"),
+        secure: true,
       },
     },
   },
